@@ -1,27 +1,34 @@
 package icu.debug.ai.mocker.service;
 
-import icu.debug.ai.mocker.core.AbstractMockServer;
-import icu.debug.ai.mocker.core.MockRule;
-import icu.debug.ai.mocker.core.MockServer;
+import icu.debug.ai.mocker.core.*;
 import icu.debug.ai.mocker.entity.MockRequest;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.ai.openai.metadata.OpenAiChatResponseMetadata;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author hanjinxiang@debug.icu
  * @date 2024-03-19 0:15
  */
-public class OpenAiMockServer extends AbstractMockServer<OpenAiChatResponseMetadata> implements MockServer {
+//@Component
+public class OpenAiMockServer extends AbstractMockServer implements MockServer {
 
-
-
-    @Override
-    public Object mock(HttpServletRequest request) {
-        return null;
+    public OpenAiMockServer(RequestResolver requestResolver, RuleMatcher ruleMatcher) {
+        super(requestResolver, ruleMatcher, new OpenAiResponseBuilder());
     }
+
 
     @Override
     protected boolean isStream(MockRequest mockRequest, MockRule rule) {
-        return false;
+        return Optional
+                .ofNullable(mockRequest.getBody())
+                .orElse("")
+                .contains("\"stream\":true")
+                ||
+                Optional
+                        .ofNullable(mockRequest.getHeaders())
+                        .orElse(Map.of())
+                        .containsKey("stream");
     }
 }

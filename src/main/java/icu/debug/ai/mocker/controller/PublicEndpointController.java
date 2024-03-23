@@ -19,7 +19,7 @@ public class PublicEndpointController {
      * @param request
      * @return
      */
-    @RequestMapping("*")
+    //@RequestMapping("*")
     public Object endpoint(HttpServletRequest request) {
         return request;
     }

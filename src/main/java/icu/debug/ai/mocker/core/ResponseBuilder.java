@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
  * @author hanjinxiang@debug.icu
  * @date 2024-03-19 0:04
  */
-public interface ResponseBuilder<T> {
+public interface ResponseBuilder {
 
     /**
      * 构建流式输出
@@ -27,6 +27,6 @@ public interface ResponseBuilder<T> {
      * @param request
      * @return
      */
-    T build(MockRule rule, MockRequest request);
+    Object build(MockRule rule, MockRequest request);
 
 }
