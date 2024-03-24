@@ -1,4 +1,7 @@
-package icu.debug.ai.mocker.core;
+package icu.debug.ai.mocker.core.iface;
+
+import icu.debug.ai.mocker.entity.StreamOption;
+import icu.debug.ai.mocker.entity.TaskCollection;
 
 /**
  * token生成器
@@ -15,9 +18,11 @@ public interface TokenGenerator {
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {
-            throw new IllegalStateException("");
+            throw new IllegalStateException("delay interrupted! ", e);
         }
         return token;
     }
+
+    TaskCollection asyncGenerate(String content, StreamOption option);
 
 }

@@ -1,4 +1,4 @@
-package icu.debug.ai.mocker.core;
+package icu.debug.ai.mocker.core.iface;
 
 import jakarta.servlet.http.HttpServletRequest;
 

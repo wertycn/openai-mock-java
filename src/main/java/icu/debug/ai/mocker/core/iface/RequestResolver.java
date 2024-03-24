@@ -1,6 +1,6 @@
-package icu.debug.ai.mocker.core;
+package icu.debug.ai.mocker.core.iface;
 
-import icu.debug.ai.mocker.entity.MockRequest;
+import icu.debug.ai.mocker.entity.ModelRequest;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
@@ -17,5 +17,5 @@ public interface RequestResolver {
      * @param request
      * @return
      */
-    MockRequest resolve(HttpServletRequest request);
+    ModelRequest resolve(HttpServletRequest request);
 }

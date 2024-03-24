@@ -1,6 +1,7 @@
-package icu.debug.ai.mocker.core;
+package icu.debug.ai.mocker.core.iface;
 
-import icu.debug.ai.mocker.entity.MockRequest;
+import icu.debug.ai.mocker.entity.MockRule;
+import icu.debug.ai.mocker.entity.ModelRequest;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
@@ -18,7 +19,7 @@ public interface ResponseBuilder {
      * @param request
      * @return
      */
-    SseEmitter buildStream(MockRule rule, MockRequest request);
+    SseEmitter buildStream(MockRule rule, ModelRequest request);
 
     /**
      * 构建普通对象输出
@@ -27,6 +28,6 @@ public interface ResponseBuilder {
      * @param request
      * @return
      */
-    Object build(MockRule rule, MockRequest request);
+    Object build(MockRule rule, ModelRequest request);
 
 }

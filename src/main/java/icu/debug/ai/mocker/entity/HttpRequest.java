@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2024-03-18 23:32
  */
 @Getter
-public class MockRequest {
+public class HttpRequest {
 
     /**
      * 请求路径
