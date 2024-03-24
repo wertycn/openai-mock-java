@@ -1,15 +1,10 @@
-package icu.debug.ai.mocker.service;
+package icu.debug.ai.mocker.server.openai;
 
 import icu.debug.ai.mocker.core.iface.*;
 import icu.debug.ai.mocker.core.impl.AbstractMockServer;
 import icu.debug.ai.mocker.core.impl.DefaultRuleMatcher;
 import icu.debug.ai.mocker.core.impl.ServerSentEventExecutor;
-import icu.debug.ai.mocker.entity.HttpRequest;
-import icu.debug.ai.mocker.entity.MockRule;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * @author hanjinxiang@debug.icu

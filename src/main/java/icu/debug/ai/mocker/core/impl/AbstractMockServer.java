@@ -35,7 +35,7 @@ public abstract class AbstractMockServer<T> {
         this.eventExecutor = eventExecutor;
     }
 
-    public Object mock(HttpServletRequest request) {
+    public Object mock(HttpRequest request) {
         ModelRequest modelRequest = requestResolver.resolve(request);
         MockRule rule = ruleMatcher.match(modelRequest);
         Context context = new Context(modelRequest, rule);

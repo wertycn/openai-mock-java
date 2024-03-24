@@ -16,9 +16,8 @@ public class OpenAiController {
 
     @RequestMapping("/v1/chat/completions")
     public Object chat(HttpServletRequest request) {
-        if (isStream()) {
-            return new SseEmitter();
-        }
+
+
         return "";
     }
 

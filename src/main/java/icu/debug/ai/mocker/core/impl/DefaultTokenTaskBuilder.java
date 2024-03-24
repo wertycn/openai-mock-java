@@ -1,6 +1,5 @@
 package icu.debug.ai.mocker.core.impl;
 
-import icu.debug.ai.mocker.core.iface.Cl100kBaseTokenizer;
 import icu.debug.ai.mocker.core.iface.TokenTaskBuilder;
 import icu.debug.ai.mocker.core.iface.Tokenizer;
 import icu.debug.ai.mocker.entity.StreamOption;

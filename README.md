@@ -1,8 +1,6 @@
 # LLM-Mocker 
 用于Java 开发的大语言模型API mock工具，通过配置匹配规则返回内容，用于在开发及CI环境提供稳定的大模型API
 
-
-
 供应商支持计划:
 * [ ] OpenAI 
 * [ ] Azure OpenAI
@@ -27,16 +25,6 @@
 * [ ] 原生二进制
 * [ ] Docker/k8s
 * [ ] JUnit Test Plugin
-
-
-
-其他计划：
-
-* [ ] Function Call 支持
-
-  
-
-
 
 ## 实现方案
 

@@ -1,5 +1,6 @@
 package icu.debug.ai.mocker.core.iface;
 
+import icu.debug.ai.mocker.entity.HttpRequest;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
@@ -10,6 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
  */
 public interface MockServer {
 
-    Object mock(HttpServletRequest request);
+    Object mock(HttpRequest request);
 
 }

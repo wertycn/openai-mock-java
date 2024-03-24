@@ -1,10 +1,11 @@
-package icu.debug.ai.mocker.core.iface;
+package icu.debug.ai.mocker.core.impl;
 
 import com.knuddels.jtokkit.Encodings;
 import com.knuddels.jtokkit.api.Encoding;
 import com.knuddels.jtokkit.api.EncodingRegistry;
 import com.knuddels.jtokkit.api.EncodingType;
 import com.knuddels.jtokkit.api.IntArrayList;
+import icu.debug.ai.mocker.core.iface.Tokenizer;
 import icu.debug.ai.mocker.entity.TokenCollection;
 import io.netty.util.internal.StringUtil;
 import org.springframework.util.Assert;
