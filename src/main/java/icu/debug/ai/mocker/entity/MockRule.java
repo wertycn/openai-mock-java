@@ -1,6 +1,8 @@
 package icu.debug.ai.mocker.entity;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
  * @date 2024-03-18 23:54
  */
 @Getter
+@Builder
+@ToString
 public class MockRule {
 
     private String name;

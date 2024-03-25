@@ -1,9 +1,10 @@
 package icu.debug.ai.mocker.controller;
 
+import icu.debug.ai.mocker.entity.HttpServletRequestResolver;
+import icu.debug.ai.mocker.server.openai.OpenAiMockServer;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
  * @author hanjinxiang@debug.icu
@@ -13,16 +14,15 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @RequestMapping("/openai")
 public class OpenAiController {
 
+    private final OpenAiMockServer mockServer;
+
+    public OpenAiController(OpenAiMockServer mockServer) {
+        this.mockServer = mockServer;
+    }
 
     @RequestMapping("/v1/chat/completions")
     public Object chat(HttpServletRequest request) {
-
-
-        return "";
-    }
-
-    private boolean isStream() {
-        return false;
+        return mockServer.mock(HttpServletRequestResolver.resolve(request));
     }
 
 }

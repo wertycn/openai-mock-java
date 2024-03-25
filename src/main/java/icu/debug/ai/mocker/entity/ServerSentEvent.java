@@ -23,7 +23,8 @@ public class ServerSentEvent {
 
     public void send(StreamEvent event) {
         try {
-            sseEmitter.send(event);
+
+            sseEmitter.send(of(event));
         } catch (IOException e) {
             sseEmitter.completeWithError(e);
         }
@@ -39,14 +40,14 @@ public class ServerSentEvent {
 
     public static SseEmitter.SseEventBuilder of(StreamEvent streamEvent) {
         SseEmitter.SseEventBuilder builder = SseEmitter.event();
-        if (!StringUtils.hasLength(streamEvent.getName())) {
+        if (StringUtils.hasLength(streamEvent.getName())) {
             builder.name(streamEvent.getName());
         }
-        if (!StringUtils.hasLength(streamEvent.getId())) {
+        if (StringUtils.hasLength(streamEvent.getId())) {
             builder.id(streamEvent.getId());
         }
 
-        if (!StringUtils.hasLength(streamEvent.getComment())) {
+        if (StringUtils.hasLength(streamEvent.getComment())) {
             builder.comment(streamEvent.getComment());
         }
 

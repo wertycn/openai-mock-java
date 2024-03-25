@@ -1,8 +1,6 @@
 package icu.debug.ai.mocker.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * @author hanjinxiang@debug.icu
@@ -11,6 +9,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Message {
 
     private String role;

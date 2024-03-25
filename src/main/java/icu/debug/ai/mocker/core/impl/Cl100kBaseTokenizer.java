@@ -7,7 +7,6 @@ import com.knuddels.jtokkit.api.EncodingType;
 import com.knuddels.jtokkit.api.IntArrayList;
 import icu.debug.ai.mocker.core.iface.Tokenizer;
 import icu.debug.ai.mocker.entity.TokenCollection;
-import io.netty.util.internal.StringUtil;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;

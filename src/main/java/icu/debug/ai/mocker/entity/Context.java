@@ -1,10 +1,11 @@
 package icu.debug.ai.mocker.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author hanjinxiang@debug.icu
@@ -14,14 +15,16 @@ import java.util.UUID;
 @ToString
 public class Context {
 
-    private String id;
+    private final String id;
 
     /**
      * 模型请求
      */
-    private ModelRequest request;
+    private final ModelRequest request;
 
-    private MockRule rule;
+    private final MockRule rule;
+
+    private final Map<String, String> extensions = new ConcurrentHashMap<>();
 
     /**
      * 输出token统计
@@ -33,6 +36,15 @@ public class Context {
         this.request = request;
         this.rule = rule;
     }
+
+    public void setAttr(String key, String value) {
+        this.extensions.put(key, value);
+    }
+
+    public String getAttr(String key) {
+        return this.extensions.get(key);
+    }
+
 
     /**
      * 输出token数累加
