@@ -14,20 +14,20 @@ import java.util.List;
  * @author hanjinxiang@debug.icu
  * @date 2024-03-19 0:16
  */
-public abstract class AbstractMockServer<T> {
+public abstract class AbstractMockServer<S, R> {
 
     private final RequestResolver requestResolver;
     private final RuleMatcher ruleMatcher;
 
     private final StreamEventBuilder eventBuilder;
 
-    private final StreamEventExecutor<T> eventExecutor;
+    private final StreamEventExecutor<S> eventExecutor;
 
     public AbstractMockServer(
             RequestResolver requestResolver,
             RuleMatcher ruleMatcher,
             StreamEventBuilder eventBuilder,
-            StreamEventExecutor<T> eventExecutor
+            StreamEventExecutor<S> eventExecutor
     ) {
         this.requestResolver = requestResolver;
         this.ruleMatcher = ruleMatcher;
@@ -41,8 +41,17 @@ public abstract class AbstractMockServer<T> {
         Context context = new Context(modelRequest, rule);
         // TODO: 非流式响应
         if (!modelRequest.isStream()) {
-            return "";
+            return mockNoStream(rule, context);
         }
+        return mockStream(rule, context);
+    }
+
+    private R mockNoStream(MockRule rule, Context context) {
+        // 同步输出结果构建
+        return null;
+    }
+
+    private S mockStream(MockRule rule, Context context) {
         List<StreamEvent> events = new ArrayList<>(eventBuilder.onStartBuild(context));
         for (Message message : rule.getMessage()) {
             events.addAll(eventBuilder.onRoleStartBuild(context, message));
@@ -52,6 +61,7 @@ public abstract class AbstractMockServer<T> {
         events.addAll(eventBuilder.onCompleteBuild(context));
         return eventExecutor.execute(events);
     }
+
 
 
 }

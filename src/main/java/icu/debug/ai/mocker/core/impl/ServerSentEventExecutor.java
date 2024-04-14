@@ -61,6 +61,5 @@ public class ServerSentEventExecutor implements StreamEventExecutor<ServerSentEv
         } catch (InterruptedException e) {
             throw new IllegalStateException("output delay wait thread interrupted!", e);
         }
-
     }
 }
