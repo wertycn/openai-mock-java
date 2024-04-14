@@ -2,6 +2,7 @@ package icu.debug.ai.mocker.entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * @author hanjinxiang@debug.icu
@@ -9,6 +10,7 @@ import lombok.Getter;
  */
 @Getter
 @Builder
+@ToString
 public class StreamEvent {
 
     /**

@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2024-03-23 22:27
  */
 @Slf4j
-public class ServerSentEventExecutor implements StreamEventExecutor<SseEmitter> {
+public class ServerSentEventExecutor implements StreamEventExecutor<ServerSentEvent> {
 
     public static final int CORE_POOL_SIZE = 200;
     private final ExecutorService threadPool;
@@ -31,21 +31,25 @@ public class ServerSentEventExecutor implements StreamEventExecutor<SseEmitter> 
     }
 
     @Override
-    public SseEmitter execute(List<StreamEvent> events) {
+    public ServerSentEvent execute(List<StreamEvent> events) {
         ServerSentEvent sse = new ServerSentEvent();
+        sse.withIOException((e) -> {
+            throw new IllegalStateException("io connect abort " + e.getMessage());
+        });
         threadPool.execute(() -> {
             for (StreamEvent event : events) {
                 try {
                     waitDelay(event.getDelayTime());
                     sse.send(event);
                 } catch (Exception e) {
-                    log.error("sse send exception:{}", e.getMessage());
+                    log.warn("sse send {} exception:{}", event, e.getMessage(), e);
                     sse.completeWithError(e);
+                    return;
                 }
             }
             sse.complete();
         });
-        return sse.getSseEmitter();
+        return sse;
     }
 
     public void waitDelay(int time) {
